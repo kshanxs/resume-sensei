@@ -1,0 +1,51 @@
+# =========================================================================
+# RESUME SENSEI - GITIGNORE
+# =========================================================================
+# This file prevents committing personal data and local configurations.
+
+# --- Data Privacy Protection (Ignore personal resume assets) ---
+# Ignore all compiled resume formats
+*.pdf
+*.docx
+*.pages
+*.odt
+
+# Ignore local initialized Resume Hub contents (since they contain personal data)
+Master/
+Tailored/
+Applications/
+tracker.md
+
+# --- LaTeX Local Compilation Artifacts ---
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.blg
+*.bbl
+*.run.xml
+*-blx.bib
+
+# --- Python Cache & Virtual Environments ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+env/
+venv/
+
+# --- IDE & Agent Configurations ---
+.agents/
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# --- System Clutter ---
+.DS_Store
+Thumbs.db

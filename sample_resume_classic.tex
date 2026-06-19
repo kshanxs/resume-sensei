@@ -1,0 +1,193 @@
+% =========================================================================
+% RESUME SENSEI - SAMPLE LATEX RESUME (CLASSIC ORANGE & STYLIZED)
+% =========================================================================
+% Compile with: pdflatex
+% =========================================================================
+
+\documentclass[10pt,a4paper]{article}
+
+% --- Standard Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[empty]{fullpage}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{array}
+
+% --- Font Settings ---
+\renewcommand{\familydefault}{\sfdefault} 
+
+% --- Color Palette (Classic Orange and Charcoal) ---
+\definecolor{sectcol}{RGB}{255,150,0}     % Orange accent color for headers/bars
+\definecolor{bgcol}{RGB}{110,110,110}     % Dark grey for header band and dates
+\definecolor{softcol}{RGB}{225,225,225}   % Light grey for horizontal rules
+\definecolor{textColor}{RGB}{43,43,43}     % Charcoal for body text
+
+% --- Page Margins (Locked for full-width banner alignment) ---
+\geometry{
+    a4paper,
+    left=1.5cm,
+    right=1.5cm,
+    top=1.75cm,
+    bottom=1.5cm
+}
+
+% --- Hyperref Setup ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=sectcol,
+    urlcolor=sectcol,
+    pdftitle={Resume},
+    pdfauthor={Your Name}
+}
+
+% --- Custom Page Layout ---
+\urlstyle{same}
+\pagestyle{empty}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\setlength{\parindent}{0mm}
+
+% --- Table Alignments ---
+\newcolumntype{x}[1]{%
+>{\raggedleft\hspace{0pt}}p{#1}}%
+
+% --- Custom Layout Macros ---
+
+% Strut for colorbox height padding
+\newcommand{\mystrut}{\rule[-.3\baselineskip]{0pt}{\baselineskip}}
+
+% Standard mathematical triangle arrow (replacing TikZ drawings)
+\newcommand{\larrow}{$\blacktriangleright$\ }
+
+% Section header with colored orange box and white text (matching Jan's design)
+\newcommand{\cvsection}[1]{
+    \vspace{8pt}
+    \colorbox{sectcol}{\mystrut \makebox[1\linewidth][l]{
+        \textcolor{white}{\ \larrow \textbf{#1}}
+    }}\\
+    \vspace{-4pt}
+}
+
+% Stretched tabular metadata entry
+\newcommand{\metasection}[2]{
+    \begin{tabular*}{1\textwidth}{p{2.4cm} p{11.6cm}}
+        \textcolor{sectcol}{\larrow \textbf{#1}} & #2 \\[8pt]
+    \end{tabular*}
+}
+
+% Stretched event block with left-aligned date and right-aligned company
+\newcommand{\cvevent}[3]{
+    \vspace{6pt}
+    \begin{tabular*}{1\textwidth}{p{2.3cm} p{10.8cm} x{3.9cm}}
+        \textcolor{bgcol}{#1} & \textbf{#2} & \vspace{2.5pt}\textcolor{sectcol}{#3}
+    \end{tabular*}
+    \vspace{-12pt}
+    \textcolor{softcol}{\hrule}
+    \vspace{4pt}
+}
+
+% --- Custom Lists Setup (Tight spacing) ---
+\setlist[itemize]{leftmargin=0.15in, labelsep=5pt, parsep=0pt, topsep=1pt, itemsep=2pt}
+
+% =========================================================================
+% DOCUMENT BEGINS
+% =========================================================================
+\begin{document}
+\color{textColor}
+
+% === TITLE HEADLINE (Full-width grey background banner) ===
+\vspace{-20.55pt}
+\hspace{-0.25\linewidth}\colorbox{bgcol}{\makebox[1.5\linewidth][c]{
+    \HUGE{\textcolor{white}{\textsc{[Your Name]}}} \textcolor{sectcol}{\rule[-1mm]{1mm}{0.9cm}} \HUGE{\textcolor{white}{\textsc{Resume}}}
+}}
+\vspace{12pt}
+
+% === META SECTION (CONTACT INFO) ===
+\metasection{Email:}{\href{mailto:your.email@example.com}{your.email@example.com}}
+\metasection{Phone:}{[Phone Number]}
+\metasection{Location:}{[City, State]}
+\metasection{Links:}{\href{https://linkedin.com/in/yourusername}{linkedin.com/in/yourusername} $\cdot$ \href{https://github.com/yourusername}{github.com/yourusername}}
+
+\vspace{4pt}
+
+% === PROFESSIONAL SUMMARY ===
+\cvsection{Summary}
+Senior Software Engineer with 6+ years of experience specializing in backend architecture, database optimization, and cloud infrastructure. Proven track record of improving application latency by 40\% and developer velocity by automating release pipelines. Strong technical leader skilled in leading agile teams of 5--8 engineers to deliver secure, distributed systems.
+\vspace{4pt}
+
+% === TECHNICAL SKILLS ===
+\cvsection{Skills}
+\begin{tabular}{ @{} p{1.8in} @{} p{5.2in} }
+    \textbf{Languages:} & Python, SQL (PostgreSQL, MySQL), JavaScript, TypeScript, Go, HTML5/CSS3 \\
+    \textbf{Frameworks \& Libraries:} & React, Node.js, Express, Flask, Django, FastAPI \\
+    \textbf{Cloud \& DevOps:} & AWS (S3, EC2, RDS, Lambda), Docker, Kubernetes, GitHub Actions, Jenkins \\
+    \textbf{Databases:} & PostgreSQL, MySQL, Redis, MongoDB \\
+    \textbf{Methodologies:} & Agile/Scrum, Software Development Life Cycle (SDLC), Test-Driven Development (TDD) \\
+\end{tabular}
+\vspace{4pt}
+
+% === PROFESSIONAL EXPERIENCE ===
+\cvsection{Experience}
+
+\cvevent{August 2024 -- Present}{Senior Backend Engineer}{TechCorp}
+\begin{itemize}
+    \item Architected migration of 12 legacy Python microservices to AWS Lambda, resulting in 45\% infrastructure cost reduction and 99.99\% service availability.
+    \item Spearheaded backend redesign of core checkout API, reducing average transaction response latency from 1.2s to 400ms (66\% improvement).
+    \item Led team of 5 engineers to build real-time dashboard using React and WebSocket, boosting daily active user interaction by 30\%.
+    \item Mentored 4 junior developers, introducing TDD practices that reduced production bug reports by 35\% within 6 months.
+\end{itemize}
+\vspace{6pt}
+
+\cvevent{June 2021 -- July 2024}{Software Engineer}{Startup Inc}
+\begin{itemize}
+    \item Implemented indexing and query optimization across PostgreSQL databases, reducing dashboard loading times by 50\% (from 10s to 5s).
+    \item Built automated CI/CD pipelines using GitHub Actions, decreasing weekly team manual release overhead from 8 hours to 15 minutes.
+    \item Developed customer onboarding flows in React and Node.js, increasing account completion conversion rates by 22\%.
+    \item Resolved 80+ critical system bug tickets during high-traffic Q4 sales season, maintaining 99.9\% application uptime.
+\end{itemize}
+\vspace{4pt}
+
+% === PROJECTS ===
+\cvsection{Key Projects}
+
+\cvevent{Go, Redis, Docker}{Distributed Task Queue}{\href{https://github.com/yourusername}{github.com/yourusername}}
+\begin{itemize}
+    \item Designed an open-source task queue in Go capable of processing 10K+ concurrent background jobs.
+    \item Utilized Redis for queue scheduling, achieving sub-millisecond task dispatch latency.
+\end{itemize}
+\vspace{6pt}
+
+\cvevent{Python, AWS (S3/Lambda), React}{Serverless Analytics Tool}{Personal Project}
+\begin{itemize}
+    \item Created data aggregation tool that processed 1M+ daily server log events, visualizing metrics in a custom dashboard.
+\end{itemize}
+\vspace{4pt}
+
+% === EDUCATION ===
+\cvsection{Education}
+
+\cvevent{Graduated 2021}{Bachelor of Science in Computer Science}{[University Name]}
+\begin{itemize}
+    \item GPA: 3.82/4.00 | Honors: Magna Cum Laude, Dean's List (6 semesters)
+\end{itemize}
+\vspace{4pt}
+
+% === CERTIFICATIONS ===
+\cvsection{Certifications \& Licenses}
+\begin{itemize}[leftmargin=0.15in, labelsep=5pt, itemsep=1pt]
+    \item AWS Certified Solutions Architect -- Associate (Amazon Web Services, 2025)
+    \item Certified ScrumMaster (CSM) (Scrum Alliance, 2024)
+\end{itemize}
+
+% === ARTIFICIAL FOOTER (Full-width color band) ===
+\null
+\vspace*{\fill}
+\hspace{-0.25\linewidth}\colorbox{bgcol}{\makebox[1.5\linewidth][c]{
+    \mystrut \small \textcolor{white}{[Portfolio Link]} $\cdot$ \textcolor{white}{[GitHub Link]}
+}}
+
+\end{document}

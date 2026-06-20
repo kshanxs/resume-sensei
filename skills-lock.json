@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "resume-sensei": {
+      "source": "kshanxs/resume-sensei",
+      "sourceType": "github",
+      "skillPath": "resume-sensei/SKILL.md",
+      "computedHash": "ea2d86443c47a6e5870d829277e8dbf70f0a3e3893c112b126783df1bb21849b"
+    }
+  }
+}

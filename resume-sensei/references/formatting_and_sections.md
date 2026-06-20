@@ -61,8 +61,8 @@ Do not use generic objectives ("Seeking a challenging role"). Always use the fol
 
 $$\text{[Title/Identity]} + \text{[Years of Experience]} + \text{[Core Competency Keywords]} + \text{[Unique Value Proposition]}$$
 
-*   ❌ *Generic*: "Results-oriented professional with 5 years experience looking to grow."
-*   ✅ *Premium*: "Product Manager with 6 years experience driving B2B SaaS platforms. Track record of growing products from concept to \$10M+ ARR through data-driven roadmaps and cross-functional leadership. Expert in developer tools and API platforms."
+*   *Generic*: "Results-oriented professional with 5 years experience looking to grow."
+*   *Premium*: "Product Manager with 6 years experience driving B2B SaaS platforms. Track record of growing products from concept to \$10M+ ARR through data-driven roadmaps and cross-functional leadership. Expert in developer tools and API platforms."
 
 ### B. Skills Section Layouts
 *   **Categorized List (Recommended for Tech)**: Organize skills into logical categories to prevent a dense wall of text.

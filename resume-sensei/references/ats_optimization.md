@@ -10,10 +10,10 @@ Ensure the resume is structured so automated parsers can extract clean text.
 *   **File Format**: Standardize on `.docx` or text-based `.pdf` (never scanned images or `.pages`).
 *   **Naming Conventions**: Save files as `FirstName_LastName_Resume.pdf` or `FirstName_LastName_Resume.docx`. Avoid generic names like `resume.pdf` or version indicators like `resume_v2_final.pdf`.
 *   **Layout Safety**:
-    *   ❌ Never use text boxes, columns, tables (except simple borders), images, charts, icons, or visual proficiency bars.
-    *   ❌ Do not place critical information (like contact details) in the document's header or footer sections; ATS parsers frequently skip them. Place them in the main document body.
-    *   ✅ Use a single-column layout.
-    *   ✅ Use standard bullet characters (`•`, `-`, `*`).
+    *   Avoid using text boxes, columns, tables (except simple borders), images, charts, icons, or visual proficiency bars.
+    *   Do not place critical information (like contact details) in the document's header or footer sections; ATS parsers frequently skip them. Place them in the main document body.
+    *   Use a single-column layout.
+    *   Use standard bullet characters (`•`, `-`, `*`).
 
 ---
 
@@ -63,23 +63,23 @@ When performing an ATS audit, format your response using this structure:
 *Target: 80%+ recommended for submission.*
 
 ### File Setup Audit
-*   **Format Check**: [DOCX/PDF] - [✅/❌]
-*   **Text Extraction Status**: [Success/Failed (Scanned Image)] - [✅/❌]
-*   **File Naming**: [Name of file] - [✅/❌]
+*   **Format Check**: [DOCX/PDF] - [PASS/FAIL]
+*   **Text Extraction Status**: [Success/Failed (Scanned Image)] - [PASS/FAIL]
+*   **File Naming**: [Name of file] - [PASS/FAIL]
 
 ### Formatting & Layout Flags
-*   [✅/❌/⚠️] [No tables/columns detected]
-*   [✅/❌/⚠️] [Contact info placement check]
-*   [✅/❌/⚠️] [Font size & bullet consistency check]
+*   [PASS/FAIL/WARN] [No tables/columns detected]
+*   [PASS/FAIL/WARN] [Contact info placement check]
+*   [PASS/FAIL/WARN] [Font size & bullet consistency check]
 
 ### Keyword Match Analysis
 **Critical Keywords (Must Have):**
-*   [✅] [Keyword A] -- Found [X] times
-*   [❌] [Keyword B] -- MISSING (mentioned [Y] times in JD)
+*   [PASS] [Keyword A] -- Found [X] times
+*   [FAIL] [Keyword B] -- MISSING (mentioned [Y] times in JD)
 
 **Important Keywords:**
-*   [✅] [Keyword C] -- Found [X] times
-*   [⚠️] [Keyword D] -- Synonym mismatch (using "[term]" instead of exact JD term "[JD term]")
+*   [PASS] [Keyword C] -- Found [X] times
+*   [WARN] [Keyword D] -- Synonym mismatch (using "[term]" instead of exact JD term "[JD term]")
 
 ### Match Score: [X]%
 

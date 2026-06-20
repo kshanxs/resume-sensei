@@ -18,10 +18,10 @@ Always default to this formula to draft high-impact achievements:
 *   **Z (Action/How)**: What specific actions did you take and what tools did you use?
 
 #### Example Transformations:
-*   ❌ *Before*: "Managed social media accounts."
-*   ✅ *After*: "Grew Instagram and LinkedIn audience by 250% (5K to 17.5K followers) by designing a daily content calendar and executing 10+ influencer campaigns."
-*   ❌ *Before*: "Helped with customer service."
-*   ✅ *After*: "Improved customer satisfaction (CSAT) scores by 40% (3.2 to 4.5/5.0) by redesigning the support ticketing system and training 15 junior agents."
+*   *Before (Weak)*: "Managed social media accounts."
+*   *After (Strong)*: "Grew Instagram and LinkedIn audience by 250% (5K to 17.5K followers) by designing a daily content calendar and executing 10+ influencer campaigns."
+*   *Before (Weak)*: "Helped with customer service."
+*   *After (Strong)*: "Improved customer satisfaction (CSAT) scores by 40% (3.2 to 4.5/5.0) by redesigning the support ticketing system and training 15 junior agents."
 
 ---
 

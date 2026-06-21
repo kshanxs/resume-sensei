@@ -10,7 +10,7 @@
 
 <br>
 
-[![Version](https://img.shields.io/badge/version-1.1.0-8957e5?style=for-the-badge&labelColor=161b22)](./docs/FEATURES.md)
+[![Version](https://img.shields.io/badge/version-1.2.0-8957e5?style=for-the-badge&labelColor=161b22)](./docs/FEATURES.md)
 [![Install](https://img.shields.io/badge/⚡_Install-npx_skills_add-0d1117?style=for-the-badge&labelColor=161b22)](https://github.com/kshanxs/resume-sensei)
 [![License](https://img.shields.io/badge/License-MIT-2ea043?style=for-the-badge&labelColor=161b22)](./LICENSE)
 [![Docs](https://img.shields.io/badge/Docs-USAGE.md-f78166?style=for-the-badge&labelColor=161b22)](./docs/USAGE.md)
@@ -62,6 +62,7 @@ The AI guides you through importing history, improving metrics, and generating p
 | 📈 **Google X-Y-Z Formula** | Rewrites weak accomplishments into highly quantifiable result-driven statements |
 | 🎨 **Dual LaTeX Styles** | Supports both a clean,Centered Modern layout and a bold, colored-block Classic style |
 | 🛡️ **Compilation Safeguards** | Sanitizes TeX special tokens (`&`, `%`, `_`, `$`) to guarantee crash-free compiles |
+| 🛠️ **Compiler Helper** | Standalone Python script compiles LaTeX locally or prints copy-paste Overleaf instructions |
 | 📁 **Automatic .gitignore** | Automatically excludes private resumes, trackers, and document versions from public Git history |
 
 **→ [See all features and architectures](./docs/FEATURES.md)**
@@ -79,6 +80,7 @@ The AI guides you through importing history, improving metrics, and generating p
 | `"Tailor my resume for [Role] at [Company]"` | Aligns experiences to job priorities and saves version details |
 | `"Export this tailored resume to Modern LaTeX"` | Generates compile-safe LaTeX code matching the Modern template |
 | `"Export this tailored resume to Classic LaTeX"` | Generates compile-safe LaTeX code matching the Classic template |
+| `"Compile resume [path_to_tex]"` | Compiles LaTeX code to a PDF or outputs online compiling directions |
 
 **→ [Full command reference](./docs/FEATURES.md#command-reference)**
 

@@ -2,7 +2,7 @@
 
 # resume-sensei — Features & Reference
 
-**v1.0** · *Complete feature list, command reference, and skill architecture*
+**v1.2.0** · *Complete feature list, command reference, and skill architecture*
 
 </div>
 
@@ -55,7 +55,7 @@
 | **Modern Style** | Elegant layout with centered name rule, light blue accents, and clean metadata headers |
 | **Classic Style** | Academic layout with a solid color-block header band, orange accents, and filled section bars |
 | **Special Token Escaping** | Automatically sanitizes ampersands (`&`), percentages (`%`), underscores (`_`), and dollar signs (`$`) |
-| **Compile Safety** | Produces clean, error-free LaTeX that compiles on the first try |
+| **Compile Safety** | Sanitizes TeX input and provides a standalone Python compilation script (`compile_resume.py`) with Overleaf guidelines |
 
 </td>
 </tr>
@@ -95,6 +95,7 @@
 | `"Improve this bullet using X-Y-Z"` | Rewrites experience bullets with quantified metrics and active verbs |
 | `"Tailor my resume for [Role] at [Company]"` | Aligns experiences to job priorities and saves version details |
 | `"Generate [classic/modern] LaTeX resume"` | Generates compile-safe LaTeX code based on templates |
+| `"Compile resume [path_to_tex]"` | Calls `scripts/compile_resume.py` to compile LaTeX locally or display Overleaf guides |
 | `"Update application tracker"` | Appends a row to the centralized job application spreadsheet log |
 
 ---
@@ -117,6 +118,7 @@ resume-sensei-repo/           # Workspace Root
 │   │   ├── formatting_and_sections.md
 │   │   └── tailoring_and_versioning.md
 │   ├── scripts/
+│   │   ├── compile_resume.py # LaTeX compile & verification helper script
 │   │   └── parse_resume.py   # Dependency-free docx parser script
 │   └── assets/
 │       └── resume-hub/       # Template workspace skeleton

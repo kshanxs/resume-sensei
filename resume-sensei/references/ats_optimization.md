@@ -40,7 +40,10 @@ Categorize requirements into three buckets:
 3.  **Industry Domain Terms**: E-commerce, B2B SaaS, HIPAA compliance, KPI definitions, etc.
 
 ### Step 2: Perform Exact & Synonymous Audit
-Check the resume for exact occurrences of the keywords. If the resume uses synonyms (e.g., "risk mitigation" instead of "risk management" required by the JD), flag it and recommend swapping for the exact phrase to optimize parsing matches.
+Check the resume for keyword occurrences.
+*   **Semantic vs. Exact Matching**: Modern ATS platforms (like Greenhouse, Lever, or Workday) utilize semantic parsers and vector search that natively understand synonyms (e.g., matching "AWS Lambda" to "serverless", or "risk mitigation" to "risk management").
+*   **Human-Reader First (No Keyword Stuffing)**: Do not recommend a brute-force swap of synonyms if it makes the phrasing read unnaturally or sound repetitive. A human recruiter makes the final hire decision; a resume optimized purely for a parser at the expense of readability will fail.
+*   **Judicious Swapping**: Only recommend swapping synonyms for exact JD keywords if the user's original term is vague, or if the exact keyword is a core technical hard skill (e.g., programming language names) where exact matches still index more cleanly.
 
 ### Step 3: Calculate the Match Score
 Use the following formula to estimate match readiness:

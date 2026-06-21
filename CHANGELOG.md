@@ -2,6 +2,13 @@
 
 All notable changes to the `resume-sensei` skill will be documented in this file.
 
+## v1.2.0 — 2026-06-21
+- **LaTeX Compiler Tool**: Added `scripts/compile_resume.py` to check for local compilers (`pdflatex`, `xelatex`, `lualatex`), compile `.tex` files, or print copy-paste Overleaf instructions.
+- **Modernized ATS Rules**: Revised `references/ats_optimization.md` to support semantic keyword parsing and warn against exact-keyword stuffing.
+- **Secure PDF Ingestion Rules**: Added safety warnings in `SKILL.md` to flag multi-column PDF layouts where text extraction might scramble reading order.
+- **Directory Layout Standardization**: Aligned directory blueprints in `tailoring_and_versioning.md` and `SKILL.md` to match the workspace templates folder.
+- **Documentation Updates**: Documented compiler tool and usage in `README.md`, `docs/FEATURES.md`, and `docs/USAGE.md`.
+
 ## v1.1.0 — 2026-06-20
 - **Documentation Restructure:** Extracted extensive documentation to `docs/FEATURES.md` and `docs/USAGE.md` for better readability.
 - **Repository Alignment:** Aligned landing page, badges, directory structures, and MIT license references with standard Claude-skills templates.

@@ -127,7 +127,7 @@ The AI formats your resume using compilation-safe LaTeX syntax, escaping special
 > | :--- | :--- | :--- | :--- | :--- |
 > | 2026-06-20 | Google | Senior SWE | Shukla_Resume_Google_2026-06.tex | Staged |
 >
-> You can now compile this file directly using `pdflatex` or copy-paste it into Overleaf!
+> You can compile this file directly using the local compiler helper script (`python3 scripts/compile_resume.py <path_to_tex>`) or copy-paste it into Overleaf!
 
 ---
 

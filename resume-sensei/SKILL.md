@@ -47,7 +47,7 @@ When the user requests to start a new resume project or "initialize the resume w
 
 ### 2. Ingestion & Reading Uploaded Resumes
 If the user uploads an existing resume file:
-*   **PDF files**: Use the native `view_file` tool. It automatically extracts text content from PDF binaries.
+*   **PDF files**: Use the native `view_file` tool to read the text. Note that standard text extraction can scramble multi-column resume layouts by merging columns horizontally. Verify the extracted content in `Master_Resume.md` matches the source structure. If it is garbled, prompt the user to copy-paste the text directly or provide a `.docx` or `.md` copy.
 *   **DOCX files**: Run the custom python script:
     `python3 scripts/parse_resume.py <path_to_docx>`
     to extract structured text without external dependencies.
@@ -85,3 +85,4 @@ When generating LaTeX resume source code:
     *   Escape underscores: `_` $\rightarrow$ `\_` (e.g., `Node\_js`, `user\_engagement`)
     *   Escape dollar signs: `$` $\rightarrow$ `\$` (e.g., `\$50K+ transactions`)
 3.  Ensure the generated LaTeX code contains no syntax errors, utilizes only standard packages defined in the template, and aligns exactly with margins and item limits.
+4.  **Local Verification & Compilation**: Run `python3 scripts/compile_resume.py <path_to_tex>` to verify that the generated LaTeX compiles cleanly to a PDF. If no local LaTeX compiler is detected, provide clear fallback instructions to the user to compile online via Overleaf.

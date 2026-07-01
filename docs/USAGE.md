@@ -27,7 +27,7 @@ When starting, the AI initializes your central folder structures and configurati
 > *   📁 [**`Master/`**](file:///Users/shubh/Developer/resume%20sensei/resume-sensei/assets/resume-hub/Master) - Directory for your full history.
 > *   📁 [**`Tailored/`**](file:///Users/shubh/Developer/resume%20sensei/resume-sensei/assets/resume-hub/Tailored) - Directory for tailored resumes.
 > *   📁 [**`Applications/`**](file:///Users/shubh/Developer/resume%20sensei/resume-sensei/assets/resume-hub/Applications) - Application tracker spreadsheet.
-> *   📁 [**`Templates/`**](file:///Users/shubh/Developer/resume%20sensei/resume-sensei/assets/resume-hub/Templates) - Modern and Classic LaTeX layouts.
+> *   📁 [**`Templates/`**](file:///Users/shubh/Developer/resume%20sensei/resume-sensei/assets/resume-hub/Templates) - Typst template layout and packaged fonts.
 >
 > Paste your current work history in [**`Master/Master_Resume.md`**](file:///Users/shubh/Developer/resume%20sensei/resume-sensei/assets/resume-hub/Master/Master_Resume.md) to get started, or upload a resume file and ask me to parse it!
 
@@ -107,31 +107,27 @@ The AI prompts you for missing metrics to build quantitative achievement stateme
 
 ---
 
-### 5. Compiling Tailored LaTeX Resumes
+### 5. Compiling Tailored Typst Resumes
 
-The AI formats your resume using compilation-safe LaTeX syntax, escaping special tokens automatically so the output compiles on first run.
+The AI formats your resume using Typst syntax rules, managing special characters (like escaping underscores in plain text) so the output compiles cleanly.
 
-**You:** `"Export this tailored resume to Modern LaTeX style"`
+**You:** `"Export this tailored resume to Typst"`
 
 **AI:**
-> 📝 **Generating compile-safe Modern LaTeX...**
-> Sanitized special characters:
-> - `&` $\rightarrow$ `\&`
-> - `%` $\rightarrow$ `\%`
-> - `_` $\rightarrow$ `\_`
+> 📝 **Generating Typst source...**
 >
-> File written to: [**`Tailored/Google/Shukla_Resume_Google_2026-06.tex`**](file:///Users/shubh/Developer/resume%20sensei/resume-sensei/assets/resume-hub/Tailored)
+> File written to: [**`Tailored/Google/Shukla_Resume_Google_2026-06.typ`**](file:///Users/shubh/Developer/resume%20sensei/resume-sensei/assets/resume-hub/Tailored)
 >
 > **Application Tracker Logged:**
 > | Date | Company | Role | File Name | Status |
 > | :--- | :--- | :--- | :--- | :--- |
-> | 2026-06-20 | Google | Senior SWE | Shukla_Resume_Google_2026-06.tex | Staged |
+> | 2026-06-20 | Google | Senior SWE | Shukla_Resume_Google_2026-06.typ | Staged |
 >
-> You can compile this file directly using the local compiler helper script (`python3 scripts/compile_resume.py <path_to_tex>`) or copy-paste it into Overleaf!
+> You can compile this file directly using the local compiler helper script (`python3 scripts/compile_resume.py <path_to_typ>`) or copy-paste it into the online editor at typst.app!
 
 ---
 
 ## Reference Tips
 
 *   **central Master Resume**: Always keep your master markdown complete. The AI will do the heavy lifting of pruning and restructuring for each application.
-*   **Compile-Safe Conversions**: The AI checks templates for standard TeX packages like `hyperref`, `geometry`, and `fontawesome5`. Do not add custom third-party sty packages unless they are standard on basic LaTeX distributions.
+*   **Typst Compilation**: The AI targets the standard packaged templates. If compiling offline, make sure `typst` is installed and fonts are passed via the `--font-path` argument, or compile online at typst.app.

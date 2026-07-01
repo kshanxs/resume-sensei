@@ -13,7 +13,8 @@
 #set text(font: "Mulish")
 
 #show: project.with(
-  theme: rgb("#0F83C0"), // Custom premium theme color (e.g., #0F83C0 for Blue, #4273B0 for Slate)
+  theme: rgb("#4A5568"), // Custom premium theme color (e.g., #4A5568 for Slate Grey, #0F83C0 for Blue)
+  style: "classic",      // Theme style: "classic" (colored blocks) or "modern" (clean underlines)
   name: "Shubhanshu Shukla",
   contact: (
     contact(

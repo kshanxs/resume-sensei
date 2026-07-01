@@ -77,14 +77,22 @@ When the user is applying for a specific job:
 3.  Write the tailored resume source to `Tailored/[Role]/[LastName]_Resume_[Company]_[YYYY-MM].typ` (or markdown).
 4.  Update `Applications/tracker.md` by appending a new row with the target details, matching file name, and setting status to `Applied`.
 
-### 6. Typst Code Generation Rules
+### 6. Typst Code Generation & Design Rules
 When generating Typst resume source code:
-1.  Use the `Templates/template.typ` and `Templates/resume.typ` structure as the layout blueprint. Set the custom theme color (e.g., `#0F83C0` or another premium hex color) depending on preferences.
-2.  **Strict Typst Syntax Safety**: Follow Typst markup rules:
+1.  **Layout Style Selection**: Before exporting the `.typ` file, check if the user has a preference, or offer these choices:
+    *   `style: "classic"` (Default): Solid colored header banner blocks with white text (vibrant, modern look).
+    *   `style: "modern"`: Left-aligned minimalist headers with a thin colored bottom underline (clean, high-density traditional corporate/academic look).
+2.  **Theme Color Selection**: Default to **Slate Grey** (`#4A5568`) or **Blue** (`#0F83C0`). Offer these recommended color choices (or let the user provide a custom brand hex color):
+    *   Slate Grey: `#4A5568`
+    *   Blue: `#0F83C0`
+    *   Green: `#2EA043`
+    *   Purple: `#8957e5`
+3.  **Strict Typst Syntax Safety**: Follow Typst markup rules:
     *   **No LaTeX Escaping Needed**: Do NOT escape special characters like `&` or `%` or `$` unless they are layout directives.
     *   **Escape Underscores in Body Text**: Underscores `_` signify italics in Typst markup. To output a literal underscore in text (like `node_js` or variable names), escape it as `\_` (e.g., `node\_js`).
     *   **Imports**: Always use `#import "../Templates/template.typ": *` (if generating in a subfolder like `Tailored/SWE/`) or `#import "template.typ": *` (if generating in the Templates directory).
     *   **Section Formatting**: Invoke `section(title: "Section Title", content: (...subSections...))` and `subSection(...)` as defined in `template.typ`.
+    *   **Trailing Commas on Arrays**: In Typst, single-element tuples must end with a trailing comma to be parsed as arrays, e.g. `content: (subSection(...),)`. Ensure you preserve trailing commas on all single-element arrays to prevent compiler crashes.
     *   **Lists**: Bullet points in a subSection's `content` block can use Typst bullet lists: `#list([bullet 1], [bullet 2])` or standard markdown bullet lists `* bullet` within content bracket blocks `[...]`.
-3.  Ensure the generated Typst code contains no syntax errors, utilizes only standard functions defined in the template, and aligns exactly with margins and page constraints.
-4.  **Local Verification & Compilation**: Run `python3 scripts/compile_resume.py <path_to_typ>` to verify that the generated Typst compiles cleanly to a PDF. If no local Typst compiler is detected, provide clear fallback instructions to the user to compile online via the Typst App (https://typst.app).
+4.  Ensure the generated Typst code contains no syntax errors, utilizes only standard functions defined in the template, and aligns exactly with margins and page constraints (maximum 2 pages).
+5.  **Local Verification & Compilation**: Run `python3 scripts/compile_resume.py <path_to_typ>` to verify that the generated Typst compiles cleanly to a PDF. If no local Typst compiler is detected, provide clear fallback instructions to the user to compile online via the Typst App (https://typst.app).

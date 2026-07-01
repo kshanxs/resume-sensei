@@ -2,6 +2,14 @@
 
 All notable changes to the `resume-sensei` skill will be documented in this file.
 
+## v1.5.0 — 2026-07-01
+- **Typst Migration**: Transitioned the templates and compilation engine entirely from LaTeX to Typst.
+- **Mulish Font Support**: Packaged the Mulish Google Font family in the workspace Templates directory for portable offline compilation.
+- **Typst Compiler Script**: Updated `scripts/compile_resume.py` to compile Typst source files locally and pass relative font directory paths.
+- **PEP 723 Script Metadata**: Added PEP 723 inline script metadata to Python helper scripts to enable clean, isolated execution via `uv run`.
+- **Anonymized Profile Template**: Replaced template placeholders with Shubhanshu Shukla's anonymized resume data.
+- **Documentation Overhaul**: Updated `README.md`, `docs/FEATURES.md`, and `docs/USAGE.md` to match the Typst engine.
+
 ## v1.2.0 — 2026-06-21
 - **LaTeX Compiler Tool**: Added `scripts/compile_resume.py` to check for local compilers (`pdflatex`, `xelatex`, `lualatex`), compile `.tex` files, or print copy-paste Overleaf instructions.
 - **Modernized ATS Rules**: Revised `references/ats_optimization.md` to support semantic keyword parsing and warn against exact-keyword stuffing.

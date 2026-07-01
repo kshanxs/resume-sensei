@@ -12,6 +12,7 @@
 
 #let project(
   theme: rgb("#4273B0"),
+  style: "classic", // Supports "classic" (solid colored banners) or "modern" (clean bottom underlines)
   name: "",
   email: none,
   title: none,
@@ -26,7 +27,15 @@
   body) = {
 
   let backgroundTitle(content) = {
-    align(center, box(fill: theme, text(white, size: 1.25em, weight: "bold", upper(content)), width: 1fr, inset: 0.3em))
+    if style == "classic" {
+      align(center, box(fill: theme, text(white, size: 1.15em, weight: "bold", upper(content)), width: 100%, inset: 0.3em))
+    } else {
+      v(0.3em)
+      block(width: 100%, inset: (bottom: 0.2em), stroke: (bottom: 1.5pt + theme))[
+        #text(theme, size: 1.15em, weight: "bold", upper(content))
+      ]
+      v(0.1em)
+    }
   }
 
   let secondaryTitle(content) = {

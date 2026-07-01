@@ -2,7 +2,7 @@
 
 # resume-sensei — Features & Reference
 
-**v1.2.0** · *Complete feature list, command reference, and skill architecture*
+**v1.5.0** · *Complete feature list, command reference, and skill architecture*
 
 </div>
 
@@ -49,13 +49,13 @@
 </td>
 <td width="50%">
 
-### LaTeX Generation
+### Typst Generation
 | | |
 |---|---|
-| **Modern Style** | Elegant layout with centered name rule, light blue accents, and clean metadata headers |
-| **Classic Style** | Academic layout with a solid color-block header band, orange accents, and filled section bars |
-| **Special Token Escaping** | Automatically sanitizes ampersands (`&`), percentages (`%`), underscores (`_`), and dollar signs (`$`) |
-| **Compile Safety** | Sanitizes TeX input and provides a standalone Python compilation script (`compile_resume.py`) with Overleaf guidelines |
+| **Grid Layout** | Elegant modular grid layout with left/right alignments and clean metadata headers |
+| **Theme Customization** | Supports fully custom accent colors by modifying theme parameters |
+| **Special Character Escaping** | Standardizes characters and manages Typst syntax constraints (e.g. escaping underscores in text) |
+| **Compile Safety** | Sanitizes inputs and provides a standalone Python compilation script (`compile_resume.py`) with typst.app guidelines |
 
 </td>
 </tr>
@@ -94,8 +94,8 @@
 | `"Check ATS match against [job description]"` | Analyzes resume keywords, calculates match score, and reports gaps |
 | `"Improve this bullet using X-Y-Z"` | Rewrites experience bullets with quantified metrics and active verbs |
 | `"Tailor my resume for [Role] at [Company]"` | Aligns experiences to job priorities and saves version details |
-| `"Generate [classic/modern] LaTeX resume"` | Generates compile-safe LaTeX code based on templates |
-| `"Compile resume [path_to_tex]"` | Calls `scripts/compile_resume.py` to compile LaTeX locally or display Overleaf guides |
+| `"Export this tailored resume to Typst"` | Generates Typst markup code based on workspace templates |
+| `"Compile resume [path_to_typ]"` | Calls `scripts/compile_resume.py` to compile Typst locally or display typst.app guides |
 | `"Update application tracker"` | Appends a row to the centralized job application spreadsheet log |
 
 ---
@@ -118,7 +118,7 @@ resume-sensei-repo/           # Workspace Root
 │   │   ├── formatting_and_sections.md
 │   │   └── tailoring_and_versioning.md
 │   ├── scripts/
-│   │   ├── compile_resume.py # LaTeX compile & verification helper script
+│   │   ├── compile_resume.py # Typst compile & verification helper script
 │   │   └── parse_resume.py   # Dependency-free docx parser script
 │   └── assets/
 │       └── resume-hub/       # Template workspace skeleton

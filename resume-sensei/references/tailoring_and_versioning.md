@@ -43,24 +43,25 @@ resume-hub/
 ├── Tailored/
 │   ├── SWE/
 │   │   ├── Smith_Resume_SWE_Google_2026-06.pdf (Targeted PDF)
-│   │   └── Smith_Resume_SWE_Google_2026-06.tex (Targeted LaTeX source)
+│   │   └── Smith_Resume_SWE_Google_2026-06.typ (Targeted Typst source)
 │   └── PM/
 │       ├── Smith_Resume_PM_Meta_2026-06.pdf (Targeted PDF)
-│       └── Smith_Resume_PM_Meta_2026-06.tex (Targeted LaTeX source)
+│       └── Smith_Resume_PM_Meta_2026-06.typ (Targeted Typst source)
 ├── Templates/
-│   ├── resume_classic.tex (Base classic orange LaTeX template)
-│   └── resume_modern.tex (Base modern centered LaTeX template)
+│   ├── template.typ (Typst base layout structure definitions)
+│   ├── resume.typ (Typst resume entry point template)
+│   └── fonts/ (Packaged fonts for compilation)
 └── Applications/
     └── tracker.md (Markdown table of sent applications)
 ```
 
 ### File Naming Convention
 Consistently name final output files as:
-`[LastName]_Resume_[Role]_[Company]_[YYYY-MM].pdf` (or `.tex` for sources)
+`[LastName]_Resume_[Role]_[Company]_[YYYY-MM].pdf` (or `.typ` for sources)
 
 Examples:
 *   `Smith_Resume_BackendEng_Stripe_2026-06.pdf`
-*   `Smith_Resume_DataAnalyst_HealthcareCo_2026-06.tex`
+*   `Smith_Resume_DataAnalyst_HealthcareCo_2026-06.typ`
 
 ---
 
@@ -70,7 +71,7 @@ Implement this clean loop for each job application:
 1.  **Analyze**: Run the ATS keyword check on the Job Description vs. the `Master_Resume.md`.
 2.  **Clone**: Copy `Master_Resume.md` (or clone one of the base templates from `Templates/`) into a new file in the `Tailored/` subfolder.
 3.  **Refine**: Rewrite summary, reorder skills, select and refine experience bullets, and insert keywords.
-4.  **Export**: Generate the final LaTeX code or `.txt` output. Use `python3 scripts/compile_resume.py` to build and verify.
+4.  **Export**: Generate the final Typst source code. Use `python3 scripts/compile_resume.py` to build and verify.
 5.  **Log**: Append a new row to `Applications/tracker.md` with:
     *   Company name
     *   Role title

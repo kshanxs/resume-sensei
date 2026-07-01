@@ -93,18 +93,15 @@ Job Title | Start Month Year -- End Month Year
 
 ---
 
-## 4. LaTeX Style Configurations
+## 4. Typst Style Configurations
 
-When compile-formatting a resume, the user has two visual layout alternatives:
+When compile-formatting a resume, the workspace provides a clean, modular layout system defined in `Templates/template.typ` and `Templates/resume.typ`.
 
-### A. Modern Style (`resume_modern.tex`)
-*   **Aesthetic**: Centered, clean visual lines with light blue highlights (`RGB 0,150,255`).
-*   **Header**: Name is centered with a vertical accent rule: `Name | Resume`.
-*   **Metadata**: Contact parameters are stretched across margin columns using custom spacing.
-*   **Layout**: Simple, modern typography optimized for standard corporate applications.
-
-### B. Classic Style (`resume_classic.tex`)
-*   **Aesthetic**: Bold header band and orange accents (`RGB 255,150,0`) for section headlines.
-*   **Header**: Top of page is covered in a full-width dark grey background color block containing name and title in white text.
-*   **Metadata**: Arranged in a vertical grid table separated by right-aligned fields.
-*   **Layout**: Banners cover section headlines. Dates are left-aligned in dark grey. Bottom features a matching full-width color footer band. Best for modern agency, media, or consulting profiles.
+### Visual Parameters & Theme Customization
+*   **Theme Color**: Change the theme accent color by modifying `theme: rgb("#0F83C0")` (or any other hex value) in the `project.with()` setup in your `.typ` file. This controls the background header bands, name font color, and link highlight colors.
+*   **Font Selection**: Set using `#set text(font: "Mulish")` at the top of the file. The workspace packages the Google Mulish font family by default, but standard system fonts (like Arial or Calibri) can also be specified if they are installed locally.
+*   **Margins**: Configured via the `margin` parameters inside `#set page(...)`. The default is set to `8mm` on all sides to maximize content area while remaining aesthetic.
+*   **Contact Info Links**: Rendered dynamically using the `#contact(text: "Label", link: "URL")` helper. If a link is provided, it is automatically styled with the theme color and made clickable.
+*   **Document Structure**:
+    *   `section(title: "Section Name", content: (...))` renders a section with a full-width colored header band.
+    *   `subSection(title: "Company/Inst", titleEnd: "Location", subTitle: "Role", subTitleEnd: "Date", content: [...])` defines specific entry details with left/right column alignment for easy reading.

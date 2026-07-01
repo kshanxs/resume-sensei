@@ -1,90 +1,131 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.8"
+# dependencies = []
+# ///
 import os
 import sys
 import shutil
 import subprocess
 
-def find_latex_compiler():
+def find_typst_compiler():
     """
-    Search system paths for available LaTeX compilers in order of preference.
+    Search system paths for the Typst compiler.
     """
-    compilers = ['pdflatex', 'xelatex', 'lualatex']
-    for compiler in compilers:
-        if shutil.which(compiler):
-            return compiler
-    return None
+    return shutil.which('typst')
 
-def print_fallback_instructions(tex_path):
+def print_fallback_instructions(typ_path):
     """
-    Print friendly guidelines for when no local LaTeX compiler is installed.
+    Print friendly guidelines for when no local Typst compiler is installed.
     """
-    absolute_path = os.path.abspath(tex_path)
+    absolute_path = os.path.abspath(typ_path)
     print("\n" + "="*80)
-    print(" NO LOCAL LATEX COMPILER DETECTED".center(80))
+    print(" NO LOCAL TYPST COMPILER DETECTED".center(80))
     print("="*80)
-    print(f"We generated your LaTeX resume source at:\n  {absolute_path}\n")
+    print(f"We generated your Typst resume source at:\n  {absolute_path}\n")
     print("To compile this code into a professional PDF, choose one of these options:")
-    print("\n--- OPTION 1: Compile Online with Overleaf (Easiest & Recommended) ---")
-    print("1. Open https://www.overleaf.com in your web browser.")
+    print("\n--- OPTION 1: Compile Online with Typst App (Easiest & Recommended) ---")
+    print("1. Open https://typst.app in your web browser.")
     print("2. Log in or create a free account.")
-    print("3. Click 'New Project' -> 'Blank Project'.")
-    print("4. Copy the entire content of your generated .tex file and paste it into the editor.")
-    print("5. Click 'Recompile' to render and download your PDF resume.")
-    print("\n--- OPTION 2: Install a Local LaTeX Distribution ---")
-    print("To compile from your terminal, install one of the following for your OS:")
-    print("  - macOS: Run 'brew install --cask mactex-no-gui' (or install full MacTeX)")
-    print("  - Windows: Install MiKTeX (https://miktex.org) or TeX Live")
-    print("  - Ubuntu/Linux: Run 'sudo apt-get install texlive-latex-extra texlive-fonts-recommended'")
+    print("3. Create a new blank project.")
+    print("4. Upload the files (e.g. your resume.typ and template.typ).")
+    print("5. The PDF will compile instantly in the web editor!")
+    print("\n--- OPTION 2: Install Typst Locally ---")
+    print("To compile from your terminal, install Typst for your OS:")
+    print("  - macOS: Run 'brew install typst'")
+    print("  - Windows: Run 'winget install Typst.Typst'")
+    print("  - Linux: Install via cargo ('cargo install typst-cli') or your package manager.")
+    print("\nOnce installed, compile manually using:")
+    print("  typst compile --font-path <path_to_fonts_dir> <input_file.typ> <output_file.pdf>")
     print("="*80 + "\n")
 
-def compile_latex(tex_path, output_dir=None):
+def find_font_directories(typ_path):
     """
-    Compiles the target LaTeX file to PDF using the first available system compiler.
+    Search for the custom fonts directory in various relative locations.
     """
-    if not os.path.exists(tex_path):
-        print(f"Error: Target file not found: {tex_path}", file=sys.stderr)
+    font_dirs = []
+    input_dir = os.path.dirname(os.path.abspath(typ_path))
+    
+    # 1. Relative to input file: template fonts folder
+    # e.g. Templates/fonts/
+    local_fonts = os.path.join(input_dir, "fonts")
+    if os.path.isdir(local_fonts):
+        font_dirs.append(local_fonts)
+        
+    # 2. From Tailored/SWE/ -> ../../Templates/fonts
+    parent_templates_fonts = os.path.abspath(os.path.join(input_dir, "..", "Templates", "fonts"))
+    if os.path.isdir(parent_templates_fonts):
+        font_dirs.append(parent_templates_fonts)
+        
+    parent2_templates_fonts = os.path.abspath(os.path.join(input_dir, "..", "..", "Templates", "fonts"))
+    if os.path.isdir(parent2_templates_fonts):
+        font_dirs.append(parent2_templates_fonts)
+        
+    # 3. Relative to CWD: ./Templates/fonts
+    cwd_fonts = os.path.abspath(os.path.join(os.getcwd(), "Templates", "fonts"))
+    if os.path.isdir(cwd_fonts):
+        font_dirs.append(cwd_fonts)
+        
+    # 4. Relative to the script location (fallback to original template assets)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    script_assets_fonts = os.path.abspath(os.path.join(script_dir, "..", "assets", "resume-hub", "Templates", "fonts"))
+    if os.path.isdir(script_assets_fonts):
+        font_dirs.append(script_assets_fonts)
+        
+    # Deduplicate while preserving order
+    seen = set()
+    unique_dirs = []
+    for d in font_dirs:
+        if d not in seen:
+            seen.add(d)
+            unique_dirs.append(d)
+            
+    return unique_dirs
+
+def compile_typst(typ_path, output_dir=None):
+    """
+    Compiles the target Typst file to PDF using the local typst CLI.
+    """
+    if not os.path.exists(typ_path):
+        print(f"Error: Target file not found: {typ_path}", file=sys.stderr)
         return False
 
-    compiler = find_latex_compiler()
+    compiler = find_typst_compiler()
     if not compiler:
-        print_fallback_instructions(tex_path)
+        print_fallback_instructions(typ_path)
         return False
 
     if output_dir is None:
-        output_dir = os.path.dirname(tex_path) or '.'
+        output_dir = os.path.dirname(typ_path) or '.'
     
     os.makedirs(output_dir, exist_ok=True)
     
-    print(f"Detected LaTeX compiler: {compiler}")
-    print(f"Compiling {tex_path} -> output directory: {output_dir}...")
+    base_name = os.path.splitext(os.path.basename(typ_path))[0]
+    pdf_path = os.path.join(output_dir, f"{base_name}.pdf")
+    
+    print(f"Detected Typst compiler: {compiler}")
+    print(f"Compiling {typ_path} -> {pdf_path}...")
     
     # Build standard compilation command
-    # interaction=nonstopmode prevents hanging on syntax issues
-    cmd = [
-        compiler,
-        "-interaction=nonstopmode",
-        f"-output-directory={output_dir}",
-        tex_path
-    ]
+    cmd = [compiler, "compile"]
+    
+    # Add font directories
+    font_dirs = find_font_directories(typ_path)
+    for d in font_dirs:
+        cmd.extend(["--font-path", d])
+        
+    cmd.extend([typ_path, pdf_path])
     
     try:
         # Run compiler
         result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         
-        # LaTeX compilers can fail even with exit code 0 if there are critical errors.
-        # Let's inspect files generated or stdout for errors.
-        base_name = os.path.splitext(os.path.basename(tex_path))[0]
-        pdf_path = os.path.join(output_dir, f"{base_name}.pdf")
-        
         if result.returncode == 0 and os.path.exists(pdf_path):
             print(f"Success! Compiled PDF saved to: {pdf_path}")
             return True
         else:
-            print("LaTeX compilation failed with errors. Compiler output:")
-            # Print last 20 lines of compilation stdout to help debug errors
-            lines = result.stdout.splitlines()
-            for line in lines[-30:]:
-                print(f"  {line}")
+            print("Typst compilation failed with errors. Compiler output:", file=sys.stderr)
+            print(result.stderr, file=sys.stderr)
             return False
             
     except Exception as e:
@@ -93,13 +134,13 @@ def compile_latex(tex_path, output_dir=None):
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python3 compile_resume.py <path_to_tex_file> [output_directory]")
+        print("Usage: python3 compile_resume.py <path_to_typ_file> [output_directory]")
         sys.exit(1)
         
-    tex_path = sys.argv[1]
+    typ_path = sys.argv[1]
     output_dir = sys.argv[2] if len(sys.argv) > 2 else None
     
-    success = compile_latex(tex_path, output_dir)
+    success = compile_typst(typ_path, output_dir)
     sys.exit(0 if success else 1)
 
 if __name__ == '__main__':

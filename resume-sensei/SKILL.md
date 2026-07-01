@@ -7,7 +7,7 @@ description: |
   - Check ATS compatibility, calculate keyword match scores, or find missing skills.
   - Quantify achievements, rewrite experience bullets, or apply Google's X-Y-Z formula.
   - Parse or extract text from an uploaded resume (e.g., PDF, DOCX, TXT formats).
-  - Generate, edit, or output LaTeX code for a resume.
+  - Generate, edit, or output Typst markup code for a resume.
   - Initialize the resume hub workspace ("initialize resume workspace", "start resume setup").
   - Track job applications and manage different tailored resume versions.
 
@@ -41,8 +41,9 @@ When the user requests to start a new resume project or "initialize the resume w
     *   `/Master/Master_Resume.md` (The source of truth containing all experience history).
     *   `/Tailored/` (Folder where tailored versions for specific applications will reside).
     *   `/Applications/tracker.md` (The markdown file tracking sent resumes and statuses).
-    *   `/Templates/resume_modern.tex` (Modern light-blue centered style LaTeX template).
-    *   `/Templates/resume_classic.tex` (Classic orange background banner style LaTeX template).
+    *   `/Templates/template.typ` (Reusable Typst layout template defining styles and functions).
+    *   `/Templates/resume.typ` (Typst resume entry point with actual experience and skills data).
+    *   `/Templates/fonts/` (Mulish font files required for local compilation).
 3.  Instruct the user to paste their existing resume into `Master/Master_Resume.md`, or assist them in compiling their information manually.
 
 ### 2. Ingestion & Reading Uploaded Resumes
@@ -73,16 +74,17 @@ When the user wants to polish their bullets or add metrics:
 When the user is applying for a specific job:
 1.  Read `references/tailoring_and_versioning.md`.
 2.  Analyze the target company's priorities and align the resume summary, skill ordering, and experience bullet hierarchy.
-3.  Write the tailored resume source to `Tailored/[Role]/[LastName]_Resume_[Company]_[YYYY-MM].tex` (or markdown).
+3.  Write the tailored resume source to `Tailored/[Role]/[LastName]_Resume_[Company]_[YYYY-MM].typ` (or markdown).
 4.  Update `Applications/tracker.md` by appending a new row with the target details, matching file name, and setting status to `Applied`.
 
-### 6. LaTeX Code Generation Rules
-When generating LaTeX resume source code:
-1.  Use either `Templates/resume_modern.tex` or `Templates/resume_classic.tex` as the base structural blueprint, depending on whether the user requests a modern/clean or classic/color-block layout.
-2.  **Strict Compilation Safety**: Always escape LaTeX special characters to prevent compiler crashes:
-    *   Escape ampersands: `&` $\rightarrow$ `\&` (e.g., `Languages \& Databases`)
-    *   Escape percentages: `%` $\rightarrow$ `\%` (e.g., `40\% reduction`)
-    *   Escape underscores: `_` $\rightarrow$ `\_` (e.g., `Node\_js`, `user\_engagement`)
-    *   Escape dollar signs: `$` $\rightarrow$ `\$` (e.g., `\$50K+ transactions`)
-3.  Ensure the generated LaTeX code contains no syntax errors, utilizes only standard packages defined in the template, and aligns exactly with margins and item limits.
-4.  **Local Verification & Compilation**: Run `python3 scripts/compile_resume.py <path_to_tex>` to verify that the generated LaTeX compiles cleanly to a PDF. If no local LaTeX compiler is detected, provide clear fallback instructions to the user to compile online via Overleaf.
+### 6. Typst Code Generation Rules
+When generating Typst resume source code:
+1.  Use the `Templates/template.typ` and `Templates/resume.typ` structure as the layout blueprint. Set the custom theme color (e.g., `#0F83C0` or another premium hex color) depending on preferences.
+2.  **Strict Typst Syntax Safety**: Follow Typst markup rules:
+    *   **No LaTeX Escaping Needed**: Do NOT escape special characters like `&` or `%` or `$` unless they are layout directives.
+    *   **Escape Underscores in Body Text**: Underscores `_` signify italics in Typst markup. To output a literal underscore in text (like `node_js` or variable names), escape it as `\_` (e.g., `node\_js`).
+    *   **Imports**: Always use `#import "../Templates/template.typ": *` (if generating in a subfolder like `Tailored/SWE/`) or `#import "template.typ": *` (if generating in the Templates directory).
+    *   **Section Formatting**: Invoke `section(title: "Section Title", content: (...subSections...))` and `subSection(...)` as defined in `template.typ`.
+    *   **Lists**: Bullet points in a subSection's `content` block can use Typst bullet lists: `#list([bullet 1], [bullet 2])` or standard markdown bullet lists `* bullet` within content bracket blocks `[...]`.
+3.  Ensure the generated Typst code contains no syntax errors, utilizes only standard functions defined in the template, and aligns exactly with margins and page constraints.
+4.  **Local Verification & Compilation**: Run `python3 scripts/compile_resume.py <path_to_typ>` to verify that the generated Typst compiles cleanly to a PDF. If no local Typst compiler is detected, provide clear fallback instructions to the user to compile online via the Typst App (https://typst.app).
